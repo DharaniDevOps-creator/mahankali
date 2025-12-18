@@ -1,0 +1,17 @@
+def greet_user(name):
+    return f"Hello, {name}! Welcome to Python."
+
+def main():
+    print("=== Greeting Program ===")
+    
+    name = input("Enter your name: ").strip()
+    
+    if not name:
+        print("You didn't enter a name.")
+        return
+    
+    greeting = greet_user(name)
+    print(greeting)
+
+    # S
+
