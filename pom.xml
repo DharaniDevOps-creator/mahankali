@@ -1,17 +1,67 @@
-def greet_user(name):
-    return f"Hello, {name}! Welcome to Python."
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                             https://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-def main():
-    print("=== Greeting Program ===")
-    
-    name = input("Enter your name: ").strip()
-    
-    if not name:
-        print("You didn't enter a name.")
-        return
-    
-    greeting = greet_user(name)
-    print(greeting)
+    <modelVersion>4.0.0</modelVersion>
 
-    # S
+    <groupId>com.example</groupId>
+    <artifactId>sample-app</artifactId>
+    <version>1.0.0</version>
+    <packaging>jar</packaging>
 
+    <name>Sample Maven App</name>
+    <description>Simple Maven project example</description>
+
+    <properties>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <junit.jupiter.version>5.10.1</junit.jupiter.version>
+    </properties>
+
+    <dependencies>
+        <!-- JUnit 5 for testing -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>${junit.jupiter.version}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <!-- Compiler plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.11.0</version>
+                <configuration>
+                    <source>${maven.compiler.source}</source>
+                    <target>${maven.compiler.target}</target>
+                </configuration>
+            </plugin>
+
+            <!-- Surefire plugin for tests -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.2.5</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <mainClass>com.example.App</mainClass> <!-- Main class entry -->
+                        </manifest>
+                    </archive>
+                </configuration>        
+            </plugin>
+        </plugins>
+    </build>
+<distributionManagement>
+        <repository>
+            <id>nexus-releases</id> <!-- Match this ID with the settings.xml -->
+            <url>http://3.231.25.109:8081/repository/java-packages/</url>
+        </repository>
+</distributionManagement>
+</project>
